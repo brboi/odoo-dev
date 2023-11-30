@@ -1,0 +1,28 @@
+[submodule "odoo/community"]
+	path = odoo/community
+	url = git@github.com:odoo/odoo.git
+	branch = master
+[submodule "odoo/enterprise"]
+	path = odoo/enterprise
+	url = git@github.com:odoo/enterprise.git
+	branch = master
+[submodule "odoo/design-themes"]
+	path = odoo/design-themes
+	url = git@github.com:odoo/design-themes.git
+	branch = master
+[submodule "odoo/industry"]
+	path = odoo/industry
+	url = git@github.com:odoo/industry.git
+	branch = master
+[submodule "odoo/documentation"]
+	path = odoo/documentation
+	url = git@github.com:odoo/documentation.git
+	branch = master
+[submodule "odoo/upgrade"]
+	path = odoo/upgrade
+	url = git@github.com:odoo/upgrade.git
+	branch = master
+[submodule "odoo/upgrade-util"]
+	path = odoo/upgrade-util
+	url = git@github.com:odoo/upgrade-util.git
+	branch = master

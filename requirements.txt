@@ -1,0 +1,7 @@
+# This overrides the default odoo requirements.txt file
+# and allows us to install our own dependencies.
+# This is kind of needed as for some reason the odoo requirements.txt
+# file does not install properly on NixOS 23.05 (and above?)
+python-ldap==3.4.4
+pyopenssl==23.1.1
+cryptography==40.0.2

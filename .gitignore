@@ -1,0 +1,6 @@
+data
+node_modules
+.devenv
+.direnv
+.venv
+.pre-commit-config.yaml
