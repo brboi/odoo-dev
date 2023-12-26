@@ -12,6 +12,12 @@ as a development environment manager.
 sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
+or with the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer)
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
 ### Install [cachix](https://cachix.org/) (optional)
 
 Recommended, speeds up the installation by providing binaries.
