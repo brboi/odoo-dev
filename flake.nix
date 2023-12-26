@@ -94,10 +94,11 @@
                 # If there is no requirements.txt,
                 # we need to initialize the submodules first.
                 git submodule update --init --recursive --remote
+                git submodule foreach git pull origin master
+                git submodule foreach git checkout master
+                # Install odoo requirements.
+                pip install -r $REQUIREMENTS
               fi
-
-              # Install odoo requirements.
-              pip install -r $REQUIREMENTS
 
               # Setup proper submodules remotes
               pushd odoo/community
@@ -107,8 +108,6 @@
               git config remote.dev.pushurl git@github.com:odoo-dev/odoo.git
               git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/enterprise
@@ -118,8 +117,6 @@
               git config remote.dev.pushurl git@github.com:odoo-dev/enterprise.git
               git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/industry
@@ -129,8 +126,6 @@
               git config remote.dev.pushurl git@github.com:odoo-dev/industry.git
               git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/design-themes
@@ -140,8 +135,6 @@
               git config remote.dev.pushurl git@github.com:odoo-dev/design-themes.git
               git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/upgrade-util
@@ -151,25 +144,20 @@
               git config remote.dev.pushurl git@github.com:odoo-dev/upgrade-util.git
               git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/upgrade
               git config remote.origin.url git@github.com:odoo/upgrade.git
               git config remote.origin.pushurl git@github.com:odoo/upgrade.git
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
 
               pushd odoo/documentation
               git config remote.origin.url git@github.com:odoo/documentation.git
               git config remote.origin.pushurl git@github.com:odoo/documentation.git
               git remote set-branches origin '*'
-              git fetch origin master
-              git checkout master
               popd
+
             fi
             source $VENV/bin/activate
           '';
@@ -190,7 +178,7 @@
           scripts = {
             # TODO: make this script user friendly with nice CLI options.
             odoo-dev.exec = ''
-              ./odoo/community/odoo-bin -c ./odoo.conf --dev=all -d odoo -i web
+              $DEVENV_ROOT/odoo/community/odoo-bin -c ./odoo.conf --dev=all -d odoo -i web
             '';
           };
         }
