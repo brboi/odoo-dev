@@ -40,6 +40,7 @@
             bashInteractive
             git
             nodejs_20
+            nodePackages_latest.rtlcss
 
             # wkhtmltopdf 0.12.5
             nixos-20_03-pkgs.wkhtmltopdf
