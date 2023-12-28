@@ -178,7 +178,23 @@
           scripts = {
             # TODO: make this script user friendly with nice CLI options.
             odoo-dev.exec = ''
-              $DEVENV_ROOT/odoo/community/odoo-bin -c ./odoo.conf --dev=all -d odoo -i web
+              #!/usr/bin/env bash
+
+              # Args
+              # db_name
+              db_name=$1
+              other_args="''${*:2}"
+
+              # Command to run
+              # $DEVENV_ROOT/odoo/community/odoo-bin -c ./odoo.conf --dev=all -d $db_name $other_args
+              command="$DEVENV_ROOT/odoo/community/odoo-bin -c ./odoo.conf --dev=all -d $db_name $other_args"
+
+              echo "!! Review the command to run:"
+              echo $command
+              read -p "Press enter to continue"
+
+              # Run command
+              $command
             '';
           };
         }
