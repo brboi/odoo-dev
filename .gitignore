@@ -1,6 +1,15 @@
-data
-node_modules
-.devenv
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
 .direnv
-.venv
+
+# pre-commit
 .pre-commit-config.yaml
+
+# nodejs
+node_modules
+
+# others
+data
