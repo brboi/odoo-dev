@@ -4,7 +4,6 @@ inputs:
   nixpkgs-python:
     url: github:cachix/nixpkgs-python
 imports:
-  - ./devenv/wkhtmltopdf
   - ./devenv/postgres
   - ./devenv/python38
   - ./devenv/python311

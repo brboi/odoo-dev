@@ -4,6 +4,10 @@
   ...
 }: let
   requirements = ./odoo/community/requirements.txt;
+  # https://lazamar.co.uk/nix-versions/?package=wkhtmltopdf&version=0.12.5&fullName=wkhtmltopdf-0.12.5&keyName=wkhtmltopdf&revision=096bad8d75f1445e622d07faccce2e8ff43956c5&channel=nixos-20.03#instructions
+  old_nixos_revision_for_wkhtmltopdf_0_12_5 = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/096bad8d75f1445e622d07faccce2e8ff43956c5.tar.gz";
+  }) {};
 in {
   languages.nix.enable = true;
   pre-commit.hooks = {
@@ -14,11 +18,10 @@ in {
   };
 
   packages = with pkgs; [
-    git
     nodejs_20
     nodePackages_latest.rtlcss
 
-    stdenv.cc.cc.lib
+    old_nixos_revision_for_wkhtmltopdf_0_12_5.wkhtmltopdf
 
     # Odoo deps for requirements.txt
     cyrus_sasl.dev
@@ -49,7 +52,7 @@ in {
     odoo-dev.exec = ''
       #!/usr/bin/env bash
 
-      LD_LIBRARY_PATH = "${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib]}:/run/opengl-driver/lib/:${lib.makeLibraryPath [pkgs.glib]}"
+      # LD_LIBRARY_PATH = "${lib.makeLibraryPath [pkgs.stdenv.cc.cc.lib]}:/run/opengl-driver/lib/:${lib.makeLibraryPath [pkgs.glib]}"
 
       # Args
       # db_name
