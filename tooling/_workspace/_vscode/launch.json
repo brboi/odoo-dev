@@ -11,6 +11,7 @@
       "cwd": "${workspaceFolder}",
       "program": "community/odoo-bin",
       "args": [
+        "--config=${workspaceFolder}/odoo.conf",
         "--dev=all",
         "--addons-path=${input:odooAddonsPath}",
         "--database=${input:odooDatabase}",
@@ -56,11 +57,12 @@
       "cwd": "${workspaceFolder}",
       "program": "community/odoo-bin",
       "args": [
+        "--config=${workspaceFolder}/odoo.conf",
         "--dev=all",
         "--test-enable",
         "--test-tags=${input:odooTestTags}",
         "--addons-path=${input:odooAddonsPath}",
-        "--upgrade-path=./upgrade/migrations",
+        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
         "--database=${input:odooDatabase}",
         "--stop-after-init"
       ],
@@ -73,6 +75,7 @@
       "cwd": "${workspaceFolder}",
       "program": "community/odoo-bin",
       "args": [
+        "--config=${workspaceFolder}/odoo.conf",
         "--addons-path=${input:odooAddonsPath}",
         "--database=${input:odooDatabase}",
         "--update=all",
@@ -87,7 +90,8 @@
       "cwd": "${workspaceFolder}",
       "program": "community/odoo-bin",
       "args": [
-        "--upgrade-path=./upgrade/migrations",
+        "--config=${workspaceFolder}/odoo.conf",
+        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
         "--addons-path=${input:odooAddonsPath}",
         "--database=${input:odooDatabase}",
         "--update=all",
