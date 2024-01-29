@@ -10,6 +10,7 @@
 in {
   packages = with pkgs; [
     gcc
+    google-chrome
     nixpkgs-for-wkhtmltopdf.wkhtmltopdf
     nodejs_20
   ];
