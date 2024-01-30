@@ -170,42 +170,9 @@
     },
     {
       "id": "odooTestTags",
-      "type": "pickString",
-      "description": "Choose a type of tests",
-      "default": "@zzz",
-      "options": [
-        { "label": "TAG zzz (add manually)", "value": "@zzz" },
-        { "label": "PY TestAutomation", "value": ":TestAutomation" },
-        { "label": "PY TestViews", "value": ":TestViews" },
-        {
-          "label": "PY TestViews.test_valid_accessibility_icon_text",
-          "value": ".test_valid_accessibility_icon_text"
-        },
-        { "label": "JS suite", "value": ".test_js" },
-        { "label": "JS Mobile suite", "value": ".test_mobile_js" },
-        {
-          "label": "JS Picking Barcode",
-          "value": ".test_gs1_receipt_lot_serial"
-        },
-        {
-          "label": "JS Course Publisher eLearning Manager",
-          "value": ".test_course_publisher_elearning_manager"
-        },
-        { "label": "JS HR Holidays", "value": ".test_hr_holidays_tour" },
-        {
-          "label": "JS Chatbot Steps Sequence With Move UI",
-          "value": ".test_chatbot_steps_sequence_with_move_ui"
-        },
-        { "label": "PY MAIN FLOWS suite", "value": "/test_main_flows" },
-        { "label": "PY Event Sale suite", "value": "/event_sale" },
-        { "label": "PY POS suite", "value": "/point_of_sale" },
-        { "label": "JS POS suite", "value": ".test_pos_js" },
-        {
-          "label": "Prepare before an upgrade",
-          "value": "upgrade.test_prepare"
-        },
-        { "label": "Check after an upgrade", "value": "upgrade.test_check" }
-      ]
+      "type": "promptString",
+      "description": "Choose a type of tests. Prefixes are: @ for tags, / for modules, : for classes, . for methods.",
+      "default": "@zzz"
     }
   ]
 }
