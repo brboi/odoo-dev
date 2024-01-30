@@ -14,7 +14,8 @@
         "${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
         "${input:moreOptions}"
-      ]
+      ],
+      "console": "integratedTerminal"
     },
     {
       "name": "Odoo: Launch Chrome",

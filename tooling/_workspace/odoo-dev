@@ -1,0 +1,7 @@
+# This file is runned through the launch.json VSCode python handling
+
+import subprocess
+import sys
+
+subprocess.run(sys.argv)
+# sys.argv = ["odoo-dev", <arguments>]

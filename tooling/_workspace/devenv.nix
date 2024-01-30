@@ -211,6 +211,7 @@ in {
           "$VENV_PATH"/bin/pip install --upgrade inotify
           "$VENV_PATH"/bin/pip install --upgrade libsass
           "$VENV_PATH"/bin/pip install --upgrade lxml
+          "$VENV_PATH"/bin/pip install --upgrade websocket-client
 
           # check if DEVENV_ROOT/community/requirements.txt exists
           if [ -f "$DEVENV_ROOT/community/requirements.txt" ]
@@ -247,6 +248,13 @@ in {
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade-util/requirements.txt"
           fi
 
+          # check if DEVENV_ROOT/upgrade-util/requirements-dev.txt exists
+          if [ -f "$DEVENV_ROOT/upgrade-util/requirements-dev.txt" ]
+          then
+            echo -e "\e[34mInstalling upgrade-util requirements-dev...\e[0m"
+            "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade-util/requirements-dev.txt"
+          fi
+
           # check if DEVENV_ROOT/upgrade/requirements.txt exists
           if [ -f "$DEVENV_ROOT/upgrade/requirements.txt" ]
           then
@@ -254,11 +262,25 @@ in {
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade/requirements.txt"
           fi
 
+          # check if DEVENV_ROOT/upgrade/requirements-dev.txt exists
+          if [ -f "$DEVENV_ROOT/upgrade/requirements-dev.txt" ]
+          then
+            echo -e "\e[34mInstalling upgrade requirements-dev...\e[0m"
+            "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade/requirements-dev.txt"
+          fi
+
           # check if DEVENV_ROOT/documentation/requirements.txt exists
           if [ -f "$DEVENV_ROOT/documentation/requirements.txt" ]
           then
             echo -e "\e[34mInstalling documentation requirements...\e[0m"
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/documentation/requirements.txt"
+          fi
+
+          # check if DEVENV_ROOT/documentation/tests/requirements.txt exists
+          if [ -f "$DEVENV_ROOT/documentation/tests/requirements.txt" ]
+          then
+            echo -e "\e[34mInstalling documentation/tests requirements...\e[0m"
+            "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/documentation/tests/requirements.txt"
           fi
         done
       '';
