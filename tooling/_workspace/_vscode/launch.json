@@ -9,12 +9,10 @@
       "type": "python",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "community/odoo-bin",
+      "program": "odoo-dev",
       "args": [
-        "--config=${workspaceFolder}/odoo.conf",
-        "--dev=all",
+        "${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
-        "--database=${input:odooDatabase}",
         "${input:moreOptions}"
       ]
     },
@@ -55,15 +53,13 @@
       "type": "python",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "community/odoo-bin",
+      "program": "odoo-dev",
       "args": [
-        "--config=${workspaceFolder}/odoo.conf",
-        "--dev=all",
+        "${input:odooDatabase}",
         "--test-enable",
         "--test-tags=${input:odooTestTags}",
         "--addons-path=${input:odooAddonsPath}",
         "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
-        "--database=${input:odooDatabase}",
         "--stop-after-init"
       ],
       "console": "integratedTerminal"
@@ -73,11 +69,10 @@
       "type": "python",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "community/odoo-bin",
+      "program": "odoo-dev",
       "args": [
-        "--config=${workspaceFolder}/odoo.conf",
+        "${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
-        "--database=${input:odooDatabase}",
         "--update=all",
         "--stop-after-init"
       ],
@@ -88,12 +83,11 @@
       "type": "python",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "community/odoo-bin",
+      "program": "odoo-dev",
       "args": [
-        "--config=${workspaceFolder}/odoo.conf",
-        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
+        "${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
-        "--database=${input:odooDatabase}",
+        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
         "--update=all",
         "--stop-after-init"
       ],
