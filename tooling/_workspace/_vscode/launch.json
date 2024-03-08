@@ -6,12 +6,14 @@
   "configurations": [
     {
       "name": "Odoo: Start Server",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "odoo-dev",
+      "program": "community/odoo-bin",
       "args": [
-        "${input:odooDatabase}",
+        "--config=${workspaceFolder}/odoo.conf",
+        "--dev=all",
+        "--database=${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
         "${input:moreOptions}"
       ],
@@ -51,12 +53,14 @@
     },
     {
       "name": "Odoo: Console Tests",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "odoo-dev",
+      "program": "community/odoo-bin",
       "args": [
-        "${input:odooDatabase}",
+        "--config=${workspaceFolder}/odoo.conf",
+        "--dev=all",
+        "--database=${input:odooDatabase}",
         "--test-enable",
         "--test-tags=${input:odooTestTags}",
         "--addons-path=${input:odooAddonsPath}",
@@ -66,27 +70,51 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "Odoo: Upgrade <= saas-12.3 (symlink maintenance scripts first!)",
-      "type": "python",
+      "name": "Odoo: Upgrade Tests => Prepare before an upgrade",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "odoo-dev",
+      "program": "community/odoo-bin",
       "args": [
-        "${input:odooDatabase}",
+        "--config=${workspaceFolder}/odoo.conf",
+        "--dev=all",
+        "--database=${input:odooDatabase}",
+        "--test-enable",
+        "--test-tags=upgrade.test_prepare",
         "--addons-path=${input:odooAddonsPath}",
-        "--update=all",
+        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
+        "--stop-after-init"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Odoo: Upgrade Tests => Check after an upgrade",
+      "type": "debugpy",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "program": "community/odoo-bin",
+      "args": [
+        "--config=${workspaceFolder}/odoo.conf",
+        "--dev=all",
+        "--database=${input:odooDatabase}",
+        "--test-enable",
+        "--test-tags=upgrade.test_check",
+        "--addons-path=${input:odooAddonsPath}",
+        "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
         "--stop-after-init"
       ],
       "console": "integratedTerminal"
     },
     {
       "name": "Odoo: Upgrade >= 13.0",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "program": "odoo-dev",
+      "program": "community/odoo-bin",
       "args": [
-        "${input:odooDatabase}",
+        "--config=${workspaceFolder}/odoo.conf",
+        "--dev=all",
+        "--database=${input:odooDatabase}",
         "--addons-path=${input:odooAddonsPath}",
         "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
         "--update=all",
@@ -96,7 +124,7 @@
     },
     {
       "name": "Odoo: Generate tsconfig.json",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "program": "community/odoo-bin",
@@ -131,7 +159,7 @@
     {
       "id": "odooDatabase",
       "type": "promptString",
-      "default": "odoo",
+      "default": "main",
       "description": "Database Name"
     },
     {

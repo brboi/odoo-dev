@@ -9,10 +9,13 @@
   }) {};
 in {
   packages = with pkgs; [
-    gcc
     google-chrome
+    gcc
     nixpkgs-for-wkhtmltopdf.wkhtmltopdf
     nodejs_20
+    rtlcss
+    stdenv.cc.cc.lib
+    glib
   ];
 
   scripts = {
@@ -30,9 +33,9 @@ in {
         # Command to run
         command="$DEVENV_ROOT/community/odoo-bin -c $DEVENV_ROOT/odoo.conf --dev=all -d $db_name $other_args"
 
-        echo "!! Review the command to run:"
-        echo -e "\e[33m$command\e[0m"
-        read -p "Press enter to continue"
+        # echo "!! Review the command to run:"
+        # echo -e "\e[33m$command\e[0m"
+        # read -p "Press enter to continue"
 
         # Prepare environment
         PATH="${pkgs.rtlcss}/bin:$PATH"
@@ -211,7 +214,6 @@ in {
           "$VENV_PATH"/bin/pip install --upgrade inotify
           "$VENV_PATH"/bin/pip install --upgrade libsass
           "$VENV_PATH"/bin/pip install --upgrade lxml
-          "$VENV_PATH"/bin/pip install --upgrade websocket-client
 
           # check if DEVENV_ROOT/community/requirements.txt exists
           if [ -f "$DEVENV_ROOT/community/requirements.txt" ]
@@ -244,14 +246,14 @@ in {
           # check if DEVENV_ROOT/upgrade-util/requirements.txt exists
           if [ -f "$DEVENV_ROOT/upgrade-util/requirements.txt" ]
           then
-            echo -e "\e[34mInstalling upgrade-util requirements...\e[0m"
+            echo -e "\e[34mInstalling upgrade requirements...\e[0m"
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade-util/requirements.txt"
           fi
 
           # check if DEVENV_ROOT/upgrade-util/requirements-dev.txt exists
           if [ -f "$DEVENV_ROOT/upgrade-util/requirements-dev.txt" ]
           then
-            echo -e "\e[34mInstalling upgrade-util requirements-dev...\e[0m"
+            echo -e "\e[34mInstalling upgrade requirements...\e[0m"
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade-util/requirements-dev.txt"
           fi
 
@@ -265,7 +267,7 @@ in {
           # check if DEVENV_ROOT/upgrade/requirements-dev.txt exists
           if [ -f "$DEVENV_ROOT/upgrade/requirements-dev.txt" ]
           then
-            echo -e "\e[34mInstalling upgrade requirements-dev...\e[0m"
+            echo -e "\e[34mInstalling upgrade requirements...\e[0m"
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/upgrade/requirements-dev.txt"
           fi
 
@@ -279,7 +281,7 @@ in {
           # check if DEVENV_ROOT/documentation/tests/requirements.txt exists
           if [ -f "$DEVENV_ROOT/documentation/tests/requirements.txt" ]
           then
-            echo -e "\e[34mInstalling documentation/tests requirements...\e[0m"
+            echo -e "\e[34mInstalling documentation requirements...\e[0m"
             "$VENV_PATH"/bin/pip install --upgrade -r "$DEVENV_ROOT/documentation/tests/requirements.txt"
           fi
         done
