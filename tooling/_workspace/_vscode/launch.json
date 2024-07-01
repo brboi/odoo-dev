@@ -65,7 +65,8 @@
         "--test-tags=${input:odooTestTags}",
         "--addons-path=${input:odooAddonsPath}",
         "--upgrade-path=${workspaceFolder}/upgrade-util/src,${workspaceFolder}/upgrade/migrations",
-        "--stop-after-init"
+        "--stop-after-init",
+        "${input:moreOptions}"
       ],
       "console": "integratedTerminal"
     },
@@ -169,6 +170,7 @@
       "default": "--",
       "options": [
         { "label": "No other option", "value": "--" },
+        { "label": "Without demo data", "value": "--without-demo=all" },
         { "label": "Install: Analytic", "value": "-ianalytic" },
         { "label": "Install: CRM", "value": "-icrm" },
         {
@@ -192,16 +194,28 @@
         { "label": "Install: Sale Planning", "value": "-isale_planning" },
         { "label": "Install: Stock", "value": "-istock" },
         { "label": "Install: Timesheet Grid", "value": "-itimesheet_grid" },
+        {
+          "label": "Install: Industry FSM Report",
+          "value": "-iindustry_fsm_report"
+        },
         { "label": "Install: Web Studio", "value": "-iweb_studio" },
         { "label": "Upgrade Base Automation", "value": "-ubase_automation" },
+        {
+          "label": "CUSTOM INSTALL",
+          "value": "-iaccount_edi_ubl_cii,account_followup,account_online_synchronization,account_sepa,appointment_account_payment,auth_signup,base_geolocalize,base_vat,crm,hr_hourly_cost,hr_skills,hr_timesheet,industry_fsm_report,industry_fsm_sale_report,knowledge,partner_autocomplete,phone_validation,portal,product,project_sms,rating,sale_async_emails,sale_crm,sale_pdf_quote_builder,sale_planning,sale_product_configurator,sale_service,sale_subscription,sale_timesheet_enterprise,sms,timesheet_grid,uom,web_editor,web_map,website_appointment,website_crm,website_partner"
+        },
+        {
+          "label": "Upgrade Test Web Studio",
+          "value": "-uweb_studio,test_web_studio"
+        },
         { "label": "Upgrade All", "value": "-uall" }
       ]
     },
     {
       "id": "odooTestTags",
       "type": "promptString",
-      "description": "Choose a type of tests. Prefixes are: @ for tags, / for modules, : for classes, . for methods.",
-      "default": "@zzz"
+      "description": "Choose a type of tests. Prefixes are: <none> for tags, / for modules, : for classes, . for methods.",
+      "default": "zzz"
     }
   ]
 }
