@@ -1,5 +1,6 @@
 import sys
 from argparse import ArgumentParser
+from braceexpand import braceexpand
 
 import requests
 
@@ -21,12 +22,19 @@ def clone(options):
         'Referer': f'http://localhost:{options.port}/web/database/manager',
     }
 
-    for i in range(options.count):
-        new_name = f"{options.database}-{i}"
+    targets = list(braceexpand(options.target))
+
+    # ask user for confirmation
+    print(f"clone {options.database} into {targets}?")
+    if input("y/n: ") != "y":
+        print("aborted")
+        sys.exit(0)
+
+    for target_name in targets:
         data = {
-            'master_pwd': 'Password',
+            'master_pwd': options.master_password,
             'name': options.database,
-            'new_name': new_name,
+            'new_name': target_name,
         }
         response = requests.post(
             f'http://localhost:{options.port}/web/database/duplicate',
@@ -34,7 +42,7 @@ def clone(options):
             headers=headers,
             data=data,
         )
-        print(response.status_code, response.reason, f"from {options.database} to {new_name}")
+        print(response.status_code, response.reason, f"from {options.database} to {target_name}")
 
 
 def main() -> int:
@@ -43,15 +51,13 @@ def main() -> int:
     )
     parser.add_argument(
         '-d', '--database',
-        help='Name of the database to clone',
-        type=str,
-        default='main'
+        help='Name of the source database',
+        type=str
     )
     parser.add_argument(
-        '-c', '--count',
-        help='Number of clones to create',
-        type=int,
-        default=1
+        '-t', '--target',
+        help='Name patten of clones to create. i.e. main{-{1..9},} for main + main-1 to main-9',
+        type=str
     )
     parser.add_argument(
         '-p', '--port',
