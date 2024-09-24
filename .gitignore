@@ -1,0 +1,13 @@
+# Repositories
+src/*
+
+!src/extra-addons/
+src/extra-addons/*
+!src/extra-addons/.gitkeep
+
+# Data
+.data/*
+!.data/.gitkeep
+
+# tsconfig
+tsconfig.json

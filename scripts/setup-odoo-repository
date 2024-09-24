@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -e
+
+# Sets up an odoo repository.
+# It will clone the repository in $SOURCES/$1 (or $SOURCES/$2 if $2 is set)
+# If $3 is set, it will clone without asking
+# It will also set the remote.origin.url and remote.origin.pushurl
+# of the repository and the remote.dev.url and remote.dev.pushurl if
+# there is a github.com/odoo-dev matching remote.
+#
+# $1: repository name
+# $2: folder in which to clone (default: $1)
+
+# Usage: ./setup-odoo-repository [repository name] [folder in which to clone]
+# Examples:
+#   ./setup-odoo-repository odoo community true
+#   ./setup-odoo-repository enterprise
+#   ./setup-odoo-repository upgrade
+#   ./setup-odoo-repository upgrade-util
+#   ./setup-odoo-repository design-themes extra-addons/design-themes
+#   ./setup-odoo-repository industry extra-addons/industry
+#   ./setup-odoo-repository docker
+#   ./setup-odoo-repository documentation
+#   ./setup-odoo-repository o-spreadsheet
+#   ./setup-odoo-repository owl
+#   ./setup-odoo-repository paper-muncher
+
+# First, we need to get the directory of this script.
+# See: https://stackoverflow.com/a/246128
+SRC=${BASH_SOURCE[0]}
+while [ -L "$SRC" ]; do # resolve $SRC until the file is no longer a symlink
+    DIR=$( cd -P "$( dirname "$SRC" )" >/dev/null 2>&1 && pwd )
+    SRC=$(readlink "$SRC")
+    [[ $SRC != /* ]] && SRC=$DIR/$SRC # if $SRC was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR=$( cd -P "$( dirname "$SRC" )" >/dev/null 2>&1 && pwd )
+SOURCES=$DIR/../src
+
+REPO_CLONE_NAME=${2:-$1}
+pushd $SOURCES > /dev/null
+if [ ! -d "$SOURCES/$REPO_CLONE_NAME" ]; then
+    echo -e "\e[34mPreparing $1 repository...\e[0m"
+    git clone git@github.com:odoo/$1.git $REPO_CLONE_NAME
+    pushd $REPO_CLONE_NAME > /dev/null
+    git config remote.origin.url git@github.com:odoo/$1.git
+    git config remote.origin.pushurl git@github.com:odoo/$1.git
+    # Check if has a dev remote with git ls-remote
+    RC=0
+    git ls-remote git@github.com:odoo-dev/$1.git 1> /dev/null 2>&1 || RC=$?
+    if [ $RC -eq 0 ]; then
+        git config remote.dev.url git@github.com:odoo-dev/$1.git
+        git config remote.dev.pushurl git@github.com:odoo-dev/$1.git
+        git config --add remote.dev.fetch '+refs/heads/*:refs/remotes/dev/*'
+    fi
+    git remote set-branches origin '*'
+    popd > /dev/null
+else
+    echo -e "\e[34m$1 repository already cloned into $SOURCES/$REPO_CLONE_NAME...\e[0m"
+fi
+popd > /dev/null

@@ -1,0 +1,58 @@
+services:
+
+    odoo:
+        container_name: odoo
+        image: odoo
+        restart: always
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        env_file: .env
+        shm_size: 2gb
+        privileged: true
+        ports:
+            - 8069:8069
+            - 8072:8072
+        volumes:
+            - ../.data/odoo:/var/run/odoo
+            - ../.:/workspace
+            - ../.data/commandhistory:/commandhistory
+            - /tmp/.X11-unix:/tmp/.X11-unix
+
+    database:
+        container_name: postgres_16_04
+        image: postgres:16.4-alpine
+        restart: always
+        shm_size: 128mb
+        env_file: .env
+        volumes:
+            - ../.data/pg_data:/var/lib/postgresql/data
+
+    mailpit:
+        container_name: mailpit
+        image: axllent/mailpit
+        restart: unless-stopped
+        environment:
+            - MP_DATABASE=/data/mailpit.db
+        ports:
+            - 8025:8025
+        volumes:
+            - ../.data/mailpit:/data
+
+    database-web-admin:
+        container_name: database-web-admin
+        image: dbeaver/cloudbeaver:24
+        restart: unless-stopped
+        ports:
+            - 8888:8978
+        volumes:
+            - ../.data/cloudbeaver_workspace:/opt/cloudbeaver/workspace
+
+    docker-logs:
+        container_name: docker-logs
+        image: amir20/dozzle:latest
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro

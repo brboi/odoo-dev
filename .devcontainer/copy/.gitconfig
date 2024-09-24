@@ -1,0 +1,15 @@
+[core]
+    editor = code --wait
+
+[checkout]
+    defaultRemote = origin
+
+[pull]
+    rebase = true
+
+[alias]
+    last = log -1 HEAD --stat
+    ll = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate
+    st = status -sb
+    undo = reset --mixed HEAD^
+    unstage = reset HEAD~

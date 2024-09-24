@@ -1,0 +1,240 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Odoo: Start Server",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "--addons-path=${input:odooAddonsPath}",
+                "${input:moreOptions}"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Console Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "--test-enable",
+                "--test-tags=${input:odooTestTags}",
+                "--addons-path=${input:odooAddonsPath}",
+                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
+                "--stop-after-init",
+                "${input:moreOptions}"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Upgrade Tests => Prepare before an upgrade",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "--test-enable",
+                "--test-tags=upgrade.test_prepare",
+                "--addons-path=${input:odooAddonsPath}",
+                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
+                "--stop-after-init"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Upgrade Tests => Check after an upgrade",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "--test-enable",
+                "--test-tags=upgrade.test_check",
+                "--addons-path=${input:odooAddonsPath}",
+                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
+                "--stop-after-init"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Upgrade >= 13.0",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "--addons-path=${input:odooAddonsPath}",
+                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
+                "--update=all",
+                "--stop-after-init"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Generate tsconfig.json",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "tsconfig",
+                "--addons-path=${input:odooAddonsPath}",
+                ">",
+                "${workspaceFolder}/tsconfig.json"
+            ],
+            "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "odooAddonsPath",
+            "type": "pickString",
+            "description": "Addons Path",
+            "default": "./src/community/addons,./src/enterprise",
+            "options": [
+                {
+                    "label": "EE",
+                    "value": "./src/community/addons,./src/enterprise"
+                },
+                {
+                    "label": "CE",
+                    "value": "./src/community/addons"
+                },
+                {
+                    "label": "EE + industry,themes",
+                    "value": "./src/community/addons,./src/enterprise,./src/extra-addons/industry,./src/extra-addons/design-themes"
+                },
+                {
+                    "label": "CE + industry,themes",
+                    "value": "./src/community/addons,./src/extra-addons/industry,./src/extra-addons/design-themes"
+                }
+            ]
+        },
+        {
+            "id": "odooDatabase",
+            "type": "promptString",
+            "default": "main",
+            "description": "Database Name"
+        },
+        {
+            "id": "moreOptions",
+            "type": "pickString",
+            "description": "other arguments to pass",
+            "default": "--",
+            "options": [
+                {
+                    "label": "No other option",
+                    "value": "--"
+                },
+                {
+                    "label": "Without demo data",
+                    "value": "--without-demo=all"
+                },
+                {
+                    "label": "Install: Analytic",
+                    "value": "-ianalytic"
+                },
+                {
+                    "label": "Install: CRM",
+                    "value": "-icrm"
+                },
+                {
+                    "label": "Install: Documents Spreadsheet",
+                    "value": "-idocuments_spreadsheet"
+                },
+                {
+                    "label": "Install: Documents Spreadsheet Bundle",
+                    "value": "-idocuments_spreadsheet_bundle"
+                },
+                {
+                    "label": "Install: Fleet",
+                    "value": "-ifleet"
+                },
+                {
+                    "label": "Install: Helpdesk FSM",
+                    "value": "-ihelpdesk_fsm"
+                },
+                {
+                    "label": "Install: IM Livechat",
+                    "value": "-iim_livechat"
+                },
+                {
+                    "label": "Install: MRP Maintenance",
+                    "value": "-imrp_maintenance"
+                },
+                {
+                    "label": "Install: Planning",
+                    "value": "-iplanning"
+                },
+                {
+                    "label": "Install: Project",
+                    "value": "-iproject"
+                },
+                {
+                    "label": "Install: Project Timesheet Forecast",
+                    "value": "-iproject_timesheet_forecast"
+                },
+                {
+                    "label": "Install: Sale Planning",
+                    "value": "-isale_planning"
+                },
+                {
+                    "label": "Install: Stock",
+                    "value": "-istock"
+                },
+                {
+                    "label": "Install: Timesheet Grid",
+                    "value": "-itimesheet_grid"
+                },
+                {
+                    "label": "Install: Industry FSM Report",
+                    "value": "-iindustry_fsm_report"
+                },
+                {
+                    "label": "Install: Web Studio",
+                    "value": "-iweb_studio"
+                },
+                {
+                    "label": "Upgrade Base Automation",
+                    "value": "-ubase_automation"
+                },
+                {
+                    "label": "CUSTOM INSTALL",
+                    "value": "-iaccount_edi_ubl_cii,account_followup,account_online_synchronization,account_sepa,appointment_account_payment,auth_signup,base_geolocalize,base_vat,crm,hr_hourly_cost,hr_skills,hr_timesheet,industry_fsm_report,industry_fsm_sale_report,knowledge,partner_autocomplete,phone_validation,portal,product,project_sms,rating,sale_async_emails,sale_crm,sale_pdf_quote_builder,sale_planning,sale_product_configurator,sale_service,sale_subscription,sale_timesheet_enterprise,sms,timesheet_grid,uom,web_editor,web_map,website_appointment,website_crm,website_partner"
+                },
+                {
+                    "label": "Upgrade Test Web Studio",
+                    "value": "-uweb_studio,test_web_studio"
+                },
+                {
+                    "label": "Upgrade All",
+                    "value": "-uall"
+                }
+            ]
+        },
+        {
+            "id": "odooTestTags",
+            "type": "promptString",
+            "description": "Choose a type of tests. Prefixes are: <none> for tags, / for modules, : for classes, . for methods.",
+            "default": "zzz"
+        }
+    ]
+}

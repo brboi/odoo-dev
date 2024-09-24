@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+# This script sets the maximum number of inotify watches on your host machine.
+# FYI, docker shares sysctl settings with the kernel host, so we need to
+# configure it on your host machine.
+# (https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers)
+
+# Default value
+MAX_INOTIFY_WATCHES=${MAX_INOTIFY_WATCHES:-524288}
+
+echo "Setting max inotify watches: $MAX_INOTIFY_WATCHES"
+echo fs.inotify.max_user_watches=$MAX_INOTIFY_WATCHES | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p

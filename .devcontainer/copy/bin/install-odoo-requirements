@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -e
+
+# Sets up odoo requirements.
+# It will install the requirements in $SOURCES/$1/requirements.txt
+# It will also checkout the master branch (or $2 branch if $2 is set).
+#
+# $1: repository base folder
+# $2: branch name (default: master)
+#
+# Usage: install_req [repository base folder] [branch name]
+# Examples:
+#   install_req community
+#   install_req upgrade
+#   install_req upgrade-util
+install_req() {
+    if [ -z "$1" ]; then
+        echo -e "\e[31mMissing repository base folder\e[0m"
+        exit 0
+    fi
+
+    REPO_PATH=$SOURCES/$1
+    REQUIREMENTS_PATH=$REPO_PATH/requirements.txt
+    BRANCH=${2:-master}
+
+    if [ ! -f "$REQUIREMENTS_PATH" ]; then
+        echo -e "\e[31mRequirements file not found: $REQUIREMENTS_PATH\e[0m"
+        exit 0
+    fi
+
+    echo -e "\e[34mInstalling $REPO_PATH requirements...\e[0m"
+    pushd $REPO_PATH > /dev/null
+    git fetch -p
+    git checkout $BRANCH
+    pip install --no-cache-dir --requirement "$REQUIREMENTS_PATH" --constraint "$REQUIREMENTS_PATH"
+    popd > /dev/null
+}
+
+install_req community
+install_req upgrade
+install_req upgrade-util

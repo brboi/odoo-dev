@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+
+import logging
+import os
+import subprocess as process
+from configparser import ConfigParser
+from contextlib import closing
+from io import StringIO
+from string import Template
+
+_logger = logging.getLogger(__name__)
+
+ODOO_VERSION = os.environ.get("ODOO_VERSION")
+TARGET_FILE = os.environ.get("ODOO_RC")
+CONFIG_DIR = os.path.join(os.environ.get("RESOURCES"), "conf.d")
+
+# Read all configuration files found in those folders
+_logger.info("Merging found configuration files in %s", TARGET_FILE)
+parser = ConfigParser(interpolation=None)
+for file in sorted(os.listdir(CONFIG_DIR)):
+    parser.read(os.path.join(CONFIG_DIR, file))
+
+# Write it to a memory string object
+with closing(StringIO()) as resultfp:
+    parser.write(resultfp)
+    resultfp.seek(0)
+    # Process line by line
+    result = []
+    for line in resultfp:
+        line = line.strip()
+        # Try to expand variables, skip line if missing
+        try:
+            line = Template(line).substitute(os.environ)
+        except KeyError:
+            continue
+        result.append(line)
+    # debug: print folder access rights with calling the ls command
+    target_parent = os.path.dirname(TARGET_FILE)
+    process.call(
+        ["echo", "printing access rights of target folder: %s" % target_parent]
+    )
+    process.call(["ls", "-la", target_parent])
+
+    # Write it to destination
+    with open(TARGET_FILE, "w+", encoding="utf-8") as targetfp:
+        targetfp.write("\n".join(result))

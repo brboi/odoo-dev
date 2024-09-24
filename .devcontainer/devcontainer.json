@@ -1,0 +1,57 @@
+{
+    "name": "Odoo Development Environment",
+    "dockerComposeFile": "compose.yaml",
+    "service": "odoo",
+    "postStartCommand": "bash .devcontainer/post_create.sh",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "configureZshAsDefaultShell": true
+        },
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "charliermarsh.ruff",
+                "dbaeumer.vscode-eslint",
+                "eamodio.gitlens",
+                "ms-azuretools.vscode-docker",
+                "ms-python.debugpy",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "odoo.odoo@prerelease",
+                "odoo.owl-vision",
+                "swyddfa.esbonio"
+            ],
+            "settings": {
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "never"
+                },
+                "editor.indentSize": "tabSize",
+                "editor.tabSize": 4,
+                "python.defaultInterpreterPath": "/usr/bin/python3",
+                "ruff.lint.args": [
+                    "--select",
+                    "ALL",
+                    "--preview",
+                    "--ignore",
+                    "ANN,B,C901,COM812,D,E501,E741,EM101,ERA001,FBT,I001,N,PD,PERF,PIE790,PLR,PT,Q,RET502,RET503,RSE102,RUF001,RUF012,S,SIM102,SIM108,SLF001,TID252,UP031,TRY002,TRY003,TRY300,UP038,E713,SIM117,PGH003,RUF005,RET,DTZ,FIX,TD,ARG,TRY400,B904,C408,PLW2901,PTH,EM102,INP001,CPY001,UP006,UP007,E266,PIE808,PLC2701,FURB101,RUF021,FURB118,FA100,FA102"
+                ],
+                "ruff.nativeServer": "off",
+                "search.useIgnoreFiles": false,
+                "search.useGlobalIgnoreFiles": false,
+                "terminal.integrated.defaultProfile.linux": "zsh"
+            }
+        }
+    },
+    "forwardPorts": [
+        "database-web-admin:8888",
+        "docker-logs:8080",
+        "mailpit:8025",
+        "odoo:8069",
+        "odoo:8072"
+    ]
+}
