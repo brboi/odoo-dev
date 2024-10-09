@@ -15,10 +15,9 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV PIP_NO_CACHE_DIR=1
 
 # Default values for postgres
-ENV PGHOST=db
+ENV PGHOST=database
 ENV PGUSER=odoo
 ENV PGPASSWORD=odoo
-ENV PGDATABASE=odoodb
 
 # Create directory structure
 ENV SOURCES=/workspace/src
