@@ -1,7 +1,6 @@
 services:
 
     odoo:
-        container_name: odoo
         image: odoo
         restart: always
         build:
@@ -23,7 +22,6 @@ services:
             - /tmp/.X11-unix:/tmp/.X11-unix
 
     database:
-        container_name: postgres_16_04
         image: postgres:16.4-alpine
         restart: always
         shm_size: 128mb
@@ -35,7 +33,6 @@ services:
             - ../.data/pg_data:/var/lib/postgresql/data
 
     mailpit:
-        container_name: mailpit
         image: axllent/mailpit
         restart: unless-stopped
         environment:
@@ -46,7 +43,6 @@ services:
             - ../.data/mailpit:/data
 
     database-web-admin:
-        container_name: database-web-admin
         image: dbeaver/cloudbeaver:24
         restart: unless-stopped
         ports:
@@ -55,7 +51,6 @@ services:
             - ../.data/cloudbeaver_workspace:/opt/cloudbeaver/workspace
 
     docker-logs:
-        container_name: docker-logs
         image: amir20/dozzle:latest
         restart: unless-stopped
         ports:
