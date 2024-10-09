@@ -17,6 +17,8 @@ echo "$SNIPPET_ZSH" >> /home/odoo/.zshrc
 
 # Setting up Odoo community repo
 .devcontainer/copy/bin/setup-odoo-repository odoo community
+.devcontainer/copy/bin/setup-odoo-repository upgrade
+.devcontainer/copy/bin/setup-odoo-repository upgrade-util
 .devcontainer/copy/bin/install-odoo-requirements
 
 # Setting up pre-commit hooks
