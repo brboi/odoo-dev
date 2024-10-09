@@ -7,7 +7,10 @@ services:
         build:
             context: .
             dockerfile: ./Dockerfile
-        env_file: .env
+        env_file:
+            - path: ./default.env
+            - path: ./override.env
+              required: false
         shm_size: 2gb
         privileged: true
         ports:
@@ -24,7 +27,10 @@ services:
         image: postgres:16.4-alpine
         restart: always
         shm_size: 128mb
-        env_file: .env
+        env_file:
+            - path: ./default.env
+            - path: ./override.env
+              required: false
         volumes:
             - ../.data/pg_data:/var/lib/postgresql/data
 

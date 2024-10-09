@@ -11,3 +11,6 @@ src/extra-addons/*
 
 # tsconfig
 tsconfig.json
+
+# Container env override
+.devcontainer/override.env
