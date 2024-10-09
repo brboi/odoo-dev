@@ -2,7 +2,7 @@
     "name": "Odoo Development Environment",
     "dockerComposeFile": "compose.yaml",
     "service": "odoo",
-    "postStartCommand": "bash .devcontainer/post_create.sh",
+    "postCreateCommand": "bash .devcontainer/post_create.sh",
     "workspaceFolder": "/workspace",
     "shutdownAction": "stopCompose",
     "features": {

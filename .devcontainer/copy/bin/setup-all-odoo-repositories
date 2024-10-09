@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+setup-odoo-repository odoo community
+setup-odoo-repository enterprise
+setup-odoo-repository upgrade
+setup-odoo-repository upgrade-util
+setup-odoo-repository design-themes extra-addons/design-themes
+setup-odoo-repository industry extra-addons/industry
+setup-odoo-repository docker
+setup-odoo-repository documentation
+setup-odoo-repository o-spreadsheet
+setup-odoo-repository owl
+setup-odoo-repository paper-muncher

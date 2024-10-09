@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+SOURCES=${SOURCES:-/workspace/src}
+
 # Sets up an odoo repository.
 # It will clone the repository in $SOURCES/$1 (or $SOURCES/$2 if $2 is set)
 # If $3 is set, it will clone without asking
@@ -11,30 +13,19 @@ set -e
 # $1: repository name
 # $2: folder in which to clone (default: $1)
 
-# Usage: ./setup-odoo-repository [repository name] [folder in which to clone]
+# Usage: setup-odoo-repository [repository name] [folder in which to clone]
 # Examples:
-#   ./setup-odoo-repository odoo community true
-#   ./setup-odoo-repository enterprise
-#   ./setup-odoo-repository upgrade
-#   ./setup-odoo-repository upgrade-util
-#   ./setup-odoo-repository design-themes extra-addons/design-themes
-#   ./setup-odoo-repository industry extra-addons/industry
-#   ./setup-odoo-repository docker
-#   ./setup-odoo-repository documentation
-#   ./setup-odoo-repository o-spreadsheet
-#   ./setup-odoo-repository owl
-#   ./setup-odoo-repository paper-muncher
-
-# First, we need to get the directory of this script.
-# See: https://stackoverflow.com/a/246128
-SRC=${BASH_SOURCE[0]}
-while [ -L "$SRC" ]; do # resolve $SRC until the file is no longer a symlink
-    DIR=$( cd -P "$( dirname "$SRC" )" >/dev/null 2>&1 && pwd )
-    SRC=$(readlink "$SRC")
-    [[ $SRC != /* ]] && SRC=$DIR/$SRC # if $SRC was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR=$( cd -P "$( dirname "$SRC" )" >/dev/null 2>&1 && pwd )
-SOURCES=$DIR/../src
+#   setup-odoo-repository odoo community
+#   setup-odoo-repository enterprise
+#   setup-odoo-repository upgrade
+#   setup-odoo-repository upgrade-util
+#   setup-odoo-repository design-themes extra-addons/design-themes
+#   setup-odoo-repository industry extra-addons/industry
+#   setup-odoo-repository docker
+#   setup-odoo-repository documentation
+#   setup-odoo-repository o-spreadsheet
+#   setup-odoo-repository owl
+#   setup-odoo-repository paper-muncher
 
 REPO_CLONE_NAME=${2:-$1}
 pushd $SOURCES > /dev/null
