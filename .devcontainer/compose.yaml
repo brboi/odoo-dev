@@ -49,6 +49,7 @@ services:
             - 8888:8978
         volumes:
             - ../.data/cloudbeaver_workspace:/opt/cloudbeaver/workspace
+            - ../.data/cloudbeaver_conf/initial-data-sources.conf:/opt/cloudbeaver/conf/initial-data-sources.conf
 
     docker-logs:
         image: amir20/dozzle:latest

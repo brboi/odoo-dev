@@ -9,6 +9,10 @@ src/extra-addons/*
 .data/*
 !.data/.gitkeep
 
+!.data/cloudbeaver_conf/
+.data/cloudbeaver_conf/*
+!.data/cloudbeaver_conf/initial-data-sources.conf
+
 # tsconfig
 tsconfig.json
 
