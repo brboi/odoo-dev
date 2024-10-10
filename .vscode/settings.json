@@ -8,5 +8,10 @@
         "**/Thumbs.db": true,
         "**/node_modules": true,
         "**/.ruff_cache": true
-    }
+    },
+    "git.autoRepositoryDetection": true,
+    "git.scanRepositories": [
+        "src/community",
+        "src/enterprise",
+    ]
 }
