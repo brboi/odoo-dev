@@ -60,16 +60,16 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
     && echo "$SNIPPET_ZSH" >> "/home/odoo/.zshrc"
 
 # Entrypoint scripts
-COPY --chown=odoo:odoo --chmod=775 copy/bin/* /usr/local/bin/
-COPY --chown=odoo:odoo --chmod=775 copy/.gitconfig /home/odoo
-COPY --chown=odoo:odoo --chmod=777 copy/conf.d $RESOURCES/conf.d
-COPY --chown=odoo:odoo --chmod=775 copy/entrypoint.d $RESOURCES/entrypoint.d
-COPY --chown=odoo:odoo --chmod=775 copy/entrypoint.sh $RESOURCES/entrypoint.sh
+COPY --chown=odoo:odoo --chmod=775 odoo/bin/* /usr/local/bin/
+COPY --chown=odoo:odoo --chmod=775 odoo/.gitconfig /home/odoo
+COPY --chown=odoo:odoo --chmod=777 odoo/conf.d $RESOURCES/conf.d
+COPY --chown=odoo:odoo --chmod=775 odoo/entrypoint.d $RESOURCES/entrypoint.d
+COPY --chown=odoo:odoo --chmod=775 odoo/entrypoint.sh $RESOURCES/entrypoint.sh
 
 # Install some deps, wkhtmltopdf, postgres-client, and rtlcss
 ARG DISTRIBUTION
 ARG WKHTMLTOPDF_VERSION=0.12.6
-COPY --chmod=700 copy/build/ /build/
+COPY --chmod=700 odoo/build/ /build/
 RUN apt-get -qq update \
     && xargs -a /build/install/${DISTRIBUTION}/apt-requirements.txt apt-get install -yqq --no-install-recommends \
     && xargs -a /build/install/${DISTRIBUTION}/apt-build-deps.txt apt-get install -yqq --no-install-recommends \
