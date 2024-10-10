@@ -54,7 +54,7 @@ will get setuped.
   Check http://localhost:8888 when the devcontainer is running.
 - A [Mailpit](https://github.com/axllent/mailpit) service is preconfigured.
   It's an email capture tool for developers.
-  Check http://localhost:8825 when the devcontainer is running.
+  Check http://localhost:8025 when the devcontainer is running.
 
 ### Mailpit
 It ships with mailpit ()
