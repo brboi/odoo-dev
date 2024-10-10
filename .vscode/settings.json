@@ -18,4 +18,21 @@
         "src/community",
         "src/extra-addons/runbot/mergebot_test_utils",
     ],
+    // FIXME the following setting has an application scope and can be set only in the user settings file.
+    "Odoo.configurations": {
+        "0": {
+            "id": 0,
+            "name": "Odoo LS",
+            "odooPath": "${workspaceFolder}/src/community",
+            "rawOdooPath": "${workspaceFolder}/src/community",
+            "addons": [
+                "${workspaceFolder}/src/enterprise",
+                "${workspaceFolder}/src/extra-addons/design-themes",
+                "${workspaceFolder}/src/extra-addons/industry",
+                "${workspaceFolder}/src/extra-addons/industry/tests",
+                "${workspaceFolder}/src/extra-addons/runbot"
+            ],
+            "pythonPath": "python3"
+        }
+    }
 }
