@@ -97,19 +97,6 @@
             ],
             "console": "integratedTerminal"
         },
-        {
-            "name": "Odoo: Generate tsconfig.json",
-            "type": "debugpy",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "module": "odoo",
-            "args": [
-                "tsconfig",
-                ">",
-                "${workspaceFolder}/tsconfig.json"
-            ],
-            "console": "integratedTerminal"
-        }
     ],
     "inputs": [
         {
