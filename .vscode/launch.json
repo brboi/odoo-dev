@@ -92,6 +92,7 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
+                "--upgrade_path=./src/upgrade-util,./src/upgrade",
                 "--update=all",
                 "--stop-after-init"
             ],

@@ -18,8 +18,6 @@ Then, you should:
 
 After the dev container's creation, some repositories will get cloned in `src` folder:
 - `odoo` repository into `src/community` folder
-- `upgrade` repository into `src/upgrade` folder
-- `upgrade-util` repository into `src/upgrade-util` folder
 
 ### Setup more Odoo repositories
 #### Pick It Yourself
