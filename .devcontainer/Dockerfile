@@ -84,7 +84,7 @@ RUN apt-get autopurge -yqq \
     && sync
 
 # Docker
-EXPOSE 8069 8072
+EXPOSE 8069 8070 8071 8072
 VOLUME ["/var/run/odoo", "/workspace", "/commandhistory"]
 USER odoo
 ENTRYPOINT ${RESOURCES}/entrypoint.sh

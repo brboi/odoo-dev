@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Odoo: Start Server",
+            "name": "Odoo: Start Server on port 8069",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}",
@@ -11,7 +11,24 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
-                "--addons-path=${input:odooAddonsPath}",
+                "${input:moreOptions}"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Start Server on port 8070 (CE)",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "module": "odoo",
+            "args": [
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--addons-path=./src/community/addons",
+                "--http-port=8070",
+                "--gevent-port=8071",
+                "--db-filter=ce-.*",
+                "--database=ce-${input:odooDatabase}",
                 "${input:moreOptions}"
             ],
             "console": "integratedTerminal"
@@ -28,8 +45,6 @@
                 "--database=${input:odooDatabase}",
                 "--test-enable",
                 "--test-tags=${input:odooTestTags}",
-                "--addons-path=${input:odooAddonsPath}",
-                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
                 "--stop-after-init",
                 "${input:moreOptions}"
             ],
@@ -47,8 +62,6 @@
                 "--database=${input:odooDatabase}",
                 "--test-enable",
                 "--test-tags=upgrade.test_prepare",
-                "--addons-path=${input:odooAddonsPath}",
-                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
                 "--stop-after-init"
             ],
             "console": "integratedTerminal"
@@ -65,14 +78,12 @@
                 "--database=${input:odooDatabase}",
                 "--test-enable",
                 "--test-tags=upgrade.test_check",
-                "--addons-path=${input:odooAddonsPath}",
-                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
                 "--stop-after-init"
             ],
             "console": "integratedTerminal"
         },
         {
-            "name": "Odoo: Upgrade >= 13.0",
+            "name": "Odoo: Upgrade",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}",
@@ -81,8 +92,6 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
-                "--addons-path=${input:odooAddonsPath}",
-                "--upgrade-path=${workspaceFolder}/src/upgrade-util/src,${workspaceFolder}/src/upgrade/migrations",
                 "--update=all",
                 "--stop-after-init"
             ],
@@ -96,7 +105,6 @@
             "module": "odoo",
             "args": [
                 "tsconfig",
-                "--addons-path=${input:odooAddonsPath}",
                 ">",
                 "${workspaceFolder}/tsconfig.json"
             ],
@@ -104,30 +112,6 @@
         }
     ],
     "inputs": [
-        {
-            "id": "odooAddonsPath",
-            "type": "pickString",
-            "description": "Addons Path",
-            "default": "./src/community/addons,./src/enterprise",
-            "options": [
-                {
-                    "label": "EE",
-                    "value": "./src/community/addons,./src/enterprise"
-                },
-                {
-                    "label": "CE",
-                    "value": "./src/community/addons"
-                },
-                {
-                    "label": "EE + industry,themes",
-                    "value": "./src/community/addons,./src/enterprise,./src/extra-addons/industry,./src/extra-addons/design-themes"
-                },
-                {
-                    "label": "CE + industry,themes",
-                    "value": "./src/community/addons,./src/extra-addons/industry,./src/extra-addons/design-themes"
-                }
-            ]
-        },
         {
             "id": "odooDatabase",
             "type": "promptString",

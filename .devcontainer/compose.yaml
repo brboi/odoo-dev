@@ -13,8 +13,7 @@ services:
         shm_size: 2gb
         privileged: true
         ports:
-            - 8069:8069
-            - 8072:8072
+            - 8069-8072:8069-8072
         volumes:
             - ../.data/odoo:/var/run/odoo
             - ../.:/workspace
