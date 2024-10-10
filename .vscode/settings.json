@@ -13,5 +13,9 @@
     "git.scanRepositories": [
         "src/community",
         "src/enterprise",
-    ]
+    ],
+    "python.analysis.extraPaths": [
+        "src/community",
+        "src/extra-addons/runbot/mergebot_test_utils",
+    ],
 }
