@@ -17,7 +17,6 @@
             "extensions": [
                 "charliermarsh.ruff",
                 "dbaeumer.vscode-eslint",
-                "eamodio.gitlens",
                 "ms-azuretools.vscode-docker",
                 "ms-python.debugpy",
                 "ms-python.python",
