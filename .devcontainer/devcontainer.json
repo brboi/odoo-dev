@@ -34,7 +34,7 @@
                 "editor.defaultFormatter": "dbaeumer.vscode-eslint",
                 "editor.indentSize": "tabSize",
                 "editor.tabSize": 4,
-                "python.defaultInterpreterPath": "/usr/bin/python3",
+                "python.defaultInterpreterPath": "/usr/local/bin/python3",
                 "ruff.lint.args": [
                     "--select",
                     "ALL",
