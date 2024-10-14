@@ -15,10 +15,13 @@ SNIPPET_ZSH="autoload -Uz add-zsh-hook; append_history() { fc -W }; add-zsh-hook
 echo "$SNIPPET" >> /home/odoo/.bashrc
 echo "$SNIPPET_ZSH" >> /home/odoo/.zshrc
 
-# Setting up Odoo community repo
+# Setting up Odoo main repositories
 .devcontainer/odoo/bin/setup-odoo-repository odoo community
+.devcontainer/odoo/bin/setup-odoo-repository enterprise
 .devcontainer/odoo/bin/install-odoo-requirements
-yes "n" | src/community/addons/web/tooling/enable.sh
+
+# Enabling web tooling
+yes "" | src/community/addons/web/tooling/enable.sh
 
 # Setting up pre-commit hooks
 .devcontainer/odoo/bin/setup-pre-commit

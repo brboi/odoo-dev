@@ -18,13 +18,15 @@ Then, you should:
 
 After the dev container's creation, some repositories will get cloned in `src` folder:
 - `odoo` repository into `src/community` folder
+- `enterprise` repository into `src/enterprise` folder
 
 ### Setup more Odoo repositories
 #### Pick It Yourself
-If you need to work with, say, the enterprise repo, just launch inside
+If you need to work with, say, the upgrade repos, just launch inside
 the dev container's shell:
 ```sh
-setup-odoo-repository enterprise
+setup-odoo-repository upgrade
+setup-odoo-repository upgrade-util
 ```
 
 > /!\ note that, except for `src/community` and `src/enterprise` all extra-addons
