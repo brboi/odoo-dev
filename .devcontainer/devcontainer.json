@@ -3,7 +3,7 @@
     "dockerComposeFile": "compose.yaml",
     "service": "odoo",
     "postCreateCommand": "bash .devcontainer/post_create.sh",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/work",
     "shutdownAction": "stopCompose",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {

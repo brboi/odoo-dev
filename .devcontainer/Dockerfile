@@ -20,7 +20,7 @@ ENV PGUSER=odoo
 ENV PGPASSWORD=odoo
 
 # Create directory structure
-ENV SOURCES=/workspace/src
+ENV SOURCES=/work/src
 ENV ETC_ODOO=/etc/odoo
 ENV RESOURCES=$ETC_ODOO/.resources
 
@@ -85,6 +85,6 @@ RUN apt-get autopurge -yqq \
 
 # Docker
 EXPOSE 8069 8070 8071 8072
-VOLUME ["/var/run/odoo", "/workspace", "/commandhistory"]
+VOLUME ["/var/run/odoo", "/work", "/commandhistory"]
 USER odoo
 ENTRYPOINT ${RESOURCES}/entrypoint.sh

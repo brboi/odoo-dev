@@ -16,7 +16,7 @@ services:
             - 8069-8072:8069-8072
         volumes:
             - ../.data/odoo:/var/run/odoo
-            - ../.:/workspace
+            - ../.:/work
             - ../.data/commandhistory:/commandhistory
             - /tmp/.X11-unix:/tmp/.X11-unix
 

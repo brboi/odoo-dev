@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-WORKSPACE=${WORKSPACE:-/workspace}
-
 # Requires pre-commit command to be installed.
 # See: https://pre-commit.com or try `pip install pre-commit`
 
-pushd $WORKSPACE > /dev/null
+pushd /work > /dev/null
 
 pre-commit install -t pre-commit -t commit-msg -t pre-push
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-SOURCES=${SOURCES:-/workspace/src}
+SOURCES=${SOURCES:-/work/src}
 
 # Sets up an odoo repository.
 # It will clone the repository in $SOURCES/$1 (or $SOURCES/$2 if $2 is set)
