@@ -58,9 +58,6 @@ will get setuped.
   It's an email capture tool for developers.
   Check http://localhost:8025 when the devcontainer is running.
 
-### Mailpit
-It ships with mailpit ()
-
 # Credits
 
 https://github.com/odoo-it/docker-odoo
