@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -eux
 
 # Setting access rights
 sudo chown -R odoo:odoo /etc/odoo /var/run/odoo
