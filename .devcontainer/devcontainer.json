@@ -84,13 +84,5 @@
                 }
             }
         }
-    },
-    "forwardPorts": [
-        "database-web-admin:8888",
-        "mailpit:8025",
-        "odoo:8069",
-        "odoo:8070",
-        "odoo:8071",
-        "odoo:8072"
-    ]
+    }
 }
