@@ -22,7 +22,7 @@
                 "ms-python.python",
                 "ms-python.vscode-pylance",
                 // "odoo.odoo@prerelease", // FIXME: remove once https://github.com/odoo/odoo-ls gets stable
-                "${containerWorkspaceFolder}/odoo-0.2.6.vsix",
+                "${containerWorkspaceFolder}/odoo-0.2.7.vsix",
                 "odoo.owl-vision",
                 "swyddfa.esbonio"
             ],
