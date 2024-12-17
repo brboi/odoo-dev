@@ -37,3 +37,6 @@ websocket-client
 
 # brace expansion
 braceexpand
+
+# click (for git-mig-auto-msg
+click

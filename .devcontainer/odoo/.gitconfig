@@ -13,3 +13,4 @@
     st = status -sb
     undo = reset --mixed HEAD^
     unstage = reset HEAD~
+    ci = !git mig-auto-msg | git commit -F- --edit "$*"
