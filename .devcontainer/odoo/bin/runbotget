@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+zipname=$(basename "$1")
+dbname=${zipname%.*}
+echo $dbname
+mkdir /tmp/restore-$dbname
+echo "### downloading"
+if [[ $1 == http* ]]; then
+echo "prout"
+    wget $1 -P /tmp/restore-$dbname -q
+else
+    cp $1 /tmp/restore-$dbname/$zipname
+fi
+unzip -q /tmp/restore-$dbname/$zipname -d /tmp/restore-$dbname
+echo "### restoring filestore"
+mkdir /var/run/odoo/filestore/$dbname
+mv /tmp/restore-$dbname/filestore/* /var/run/odoo/filestore/$dbname
+echo "### restoring db"
+createdb $dbname
+psql -q $dbname < /tmp/restore-$dbname/dump.sql
+echo "### cleaning"
+rm -r /tmp/restore-$dbname
+echo "Created db in $dbname"
