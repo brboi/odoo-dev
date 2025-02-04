@@ -147,6 +147,14 @@
                     "value": "-icrm"
                 },
                 {
+                    "label": "Install: Documents Project",
+                    "value": "-idocuments_project"
+                },
+                {
+                    "label": "Install: Documents Sign",
+                    "value": "-idocuments_sign"
+                },
+                {
                     "label": "Install: Documents Spreadsheet",
                     "value": "-idocuments_spreadsheet"
                 },
