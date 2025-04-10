@@ -72,6 +72,7 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
+                "--upgrade-path=./src/upgrade-util/src,./src/upgrade/migrations",
                 "--test-enable",
                 "--test-tags=upgrade.test_prepare",
                 "--stop-after-init"
@@ -91,6 +92,7 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
+                "--upgrade-path=./src/upgrade-util/src,./src/upgrade/migrations",
                 "--test-enable",
                 "--test-tags=upgrade.test_check",
                 "--stop-after-init"
@@ -110,7 +112,7 @@
                 "--config=${env:ODOO_RC}",
                 "--dev=all",
                 "--database=${input:odooDatabase}",
-                "--upgrade_path=./src/upgrade-util,./src/upgrade",
+                "--upgrade-path=./src/upgrade-util/src,./src/upgrade/migrations",
                 "--update=all",
                 "--stop-after-init"
             ],
