@@ -28,8 +28,7 @@
                 "ms-python.debugpy",
                 "ms-python.python",
                 "ms-python.vscode-pylance",
-                // "odoo.odoo@prerelease", // FIXME: remove once https://github.com/odoo/odoo-ls gets stable
-                "${containerWorkspaceFolder}/odoo-0.2.8.vsix",
+                "odoo.odoo@prerelease",
                 "odoo.owl-vision",
                 "swyddfa.esbonio"
             ],
@@ -80,13 +79,20 @@
                         "odooPath": "${workspaceFolder}/src/community",
                         "rawOdooPath": "${workspaceFolder}/src/community",
                         "addons": [
+                            "${workspaceFolder}/src/community/addons",
+                            "${workspaceFolder}/src/community/odoo/addons",
                             "${workspaceFolder}/src/enterprise",
                             "${workspaceFolder}/src/extra-addons/design-themes",
-                            "${workspaceFolder}/src/extra-addons/industry",
-                            "${workspaceFolder}/src/extra-addons/industry/tests",
                             "${workspaceFolder}/src/extra-addons/runbot"
                         ],
-                        "pythonPath": "python3"
+                        "validatedAddonsPath": [
+                            "${workspaceFolder}/src/community/addons",
+                            "${workspaceFolder}/src/community/odoo/addons",
+                            "${workspaceFolder}/src/enterprise",
+                            "${workspaceFolder}/src/extra-addons/design-themes",
+                            "${workspaceFolder}/src/extra-addons/runbot"
+                        ],
+                        "pythonPath": "/usr/local/bin/python3"
                     }
                 }
             }
