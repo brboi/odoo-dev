@@ -2,6 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Odoo: Remote Attach to OdooSH vm",
+            "type": "debugpy",
+            "request": "attach",
+            "suppressMultipleSessionWarning": true,
+            "redirectOutput": true,
+            "preLaunchTask": "odoosh-debug-tunnel-open",
+            "postDebugTask": "odoosh-debug-tunnel-exit",
+            "connect": {"host": "localhost", "port": 5678},
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/src/community",
+                    "remoteRoot": "/home/odoo/src/odoo/18.0"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/src/enterprise",
+                    "remoteRoot": "/home/odoo/src/odoo/enterprise/18.0"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/src/extra-addons/paas",
+                    "remoteRoot": "/home/odoo/src/paas"
+                }
+            ]
+        },
+        {
             "name": "Odoo: Start Server on port 8069",
             "type": "debugpy",
             "request": "launch",

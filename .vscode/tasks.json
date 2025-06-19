@@ -1,0 +1,37 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "odoosh-debug-tunnel-open",
+            "type": "shell",
+            "dependsOn": ["odoosh-debug-tunnel-exit"],
+            "runOptions": {"instanceLimit": 1},
+            "command": "ssh",
+            "args": [
+                "-p222",
+                "-f",
+                "-MS/work/odoosh-debug-tunnel",
+                "-NL5678:localhost:5678",
+                "root@sh.test"
+            ],
+            "isBackground": true,
+            "problemMatcher": "$tsc-watch",
+            "presentation": {"reveal": "never"}
+        },
+        {
+            "label": "odoosh-debug-tunnel-exit",
+            "type": "shell",
+            "dependsOn": ["odoosh-debug-tunnel-check"],
+            "command": "ssh -p222 -S/work/odoosh-debug-tunnel -Oexit root@sh.test || exit 0",
+            "problemMatcher": "$tsc",
+            "presentation": {"reveal": "never"}
+        },
+        {
+            "label": "odoosh-debug-tunnel-check",
+            "type": "shell",
+            "command": "ssh -p222 -S/work/odoosh-debug-tunnel -Ocheck root@sh.test || exit 0",
+            "problemMatcher": "$tsc",
+            "presentation": {"reveal": "never"}
+        }
+    ]
+}
