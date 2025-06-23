@@ -21,8 +21,11 @@ services:
             - /tmp/.X11-unix:/tmp/.X11-unix
 
     database:
-        image: postgres:16.4-alpine
+        image: postgres
         restart: always
+        build:
+            context: .
+            dockerfile: ./Dockerfile-psql
         shm_size: 128mb
         env_file:
             - path: ./default.env
