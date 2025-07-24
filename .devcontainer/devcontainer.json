@@ -68,31 +68,7 @@
                 "python.analysis.extraPaths": [
                     "src/community",
                     "src/extra-addons/runbot/mergebot_test_utils"
-                ],
-                // FIXME the following setting has an application scope and can be set only in the user settings file.
-                "Odoo.configurations": {
-                    "0": {
-                        "id": 0,
-                        "name": "Odoo LS",
-                        "odooPath": "${workspaceFolder}/src/community",
-                        "rawOdooPath": "${workspaceFolder}/src/community",
-                        "addons": [
-                            "${workspaceFolder}/src/community/addons",
-                            "${workspaceFolder}/src/community/odoo/addons",
-                            "${workspaceFolder}/src/enterprise",
-                            "${workspaceFolder}/src/extra-addons/design-themes",
-                            "${workspaceFolder}/src/extra-addons/runbot"
-                        ],
-                        "validatedAddonsPath": [
-                            "${workspaceFolder}/src/community/addons",
-                            "${workspaceFolder}/src/community/odoo/addons",
-                            "${workspaceFolder}/src/enterprise",
-                            "${workspaceFolder}/src/extra-addons/design-themes",
-                            "${workspaceFolder}/src/extra-addons/runbot"
-                        ],
-                        "pythonPath": "/usr/local/bin/python3"
-                    }
-                }
+                ]
             }
         }
     }

@@ -1,0 +1,11 @@
+[[config]]
+name = "Odoo LS"
+odoo_path = "${workspaceFolder}/src/community"
+addons_paths = [
+    "${workspaceFolder}/src/community/addons",
+    "${workspaceFolder}/src/community/odoo/addons",
+    "${workspaceFolder}/src/enterprise",
+    "${workspaceFolder}/src/extra-addons/design-themes",
+    "${workspaceFolder}/src/extra-addons/runbot"
+]
+python_path = "python3"
