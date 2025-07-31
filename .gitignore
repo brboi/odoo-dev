@@ -13,6 +13,8 @@ src/extra-addons/*
 .data/cloudbeaver_conf/*
 !.data/cloudbeaver_conf/initial-data-sources.conf
 
+!.data/nginx/
+
 # tsconfig
 tsconfig.json
 

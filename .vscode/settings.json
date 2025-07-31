@@ -1,0 +1,10 @@
+{
+    "debug.javascript.autoAttachFilter": "disabled",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "python.languageServer": "None",
+    "git.ignoreLimitWarning": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "Odoo.selectedProfile": "Odoo LS"
+}
