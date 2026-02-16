@@ -2,30 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Odoo: Remote Attach to OdooSH vm",
-            "type": "debugpy",
-            "request": "attach",
-            "suppressMultipleSessionWarning": true,
-            "redirectOutput": true,
-            "preLaunchTask": "odoosh-debug-tunnel-open",
-            "postDebugTask": "odoosh-debug-tunnel-exit",
-            "connect": {"host": "localhost", "port": 5678},
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}/src/community",
-                    "remoteRoot": "/home/odoo/src/odoo/18.0"
-                },
-                {
-                    "localRoot": "${workspaceFolder}/src/enterprise",
-                    "remoteRoot": "/home/odoo/src/odoo/enterprise/18.0"
-                },
-                {
-                    "localRoot": "${workspaceFolder}/src/extra-addons/paas",
-                    "remoteRoot": "/home/odoo/src/paas"
-                }
-            ]
-        },
-        {
             "name": "Odoo: Start Server on port 8069",
             "type": "debugpy",
             "request": "launch",
@@ -62,6 +38,48 @@
                 "${input:moreOptions}"
             ],
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Debug Shell",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "src/community/odoo-bin",
+            "justMyCode": false,
+            "pythonArgs": ["-Xfrozen_modules=off"],
+            "env": {"PYDEVD_DISABLE_FILE_VALIDATION": "1"},
+            "args": [
+                "shell",
+                "--config=${env:ODOO_RC}",
+                "--dev=all",
+                "--database=${input:odooDatabase}",
+                "${input:moreOptions}"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Odoo: Remote Attach to OdooSH vm",
+            "type": "debugpy",
+            "request": "attach",
+            "suppressMultipleSessionWarning": true,
+            "redirectOutput": true,
+            "preLaunchTask": "odoosh-debug-tunnel-open",
+            "postDebugTask": "odoosh-debug-tunnel-exit",
+            "connect": {"host": "localhost", "port": 5678},
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/src/community",
+                    "remoteRoot": "/home/odoo/src/odoo/18.0"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/src/enterprise",
+                    "remoteRoot": "/home/odoo/src/odoo/enterprise/18.0"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/src/extra-addons/paas",
+                    "remoteRoot": "/home/odoo/src/paas"
+                }
+            ]
         },
         {
             "name": "Odoo: Console Tests",
@@ -229,8 +247,8 @@
                     "value": "-itimesheet_grid"
                 },
                 {
-                    "label": "Install: Industry FSM Report",
-                    "value": "-iindustry_fsm_report"
+                    "label": "Install: VOIP",
+                    "value": "-ivoip"
                 },
                 {
                     "label": "Install: Web Studio",

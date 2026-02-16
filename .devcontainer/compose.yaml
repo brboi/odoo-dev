@@ -2,7 +2,7 @@ services:
 
     odoo:
         image: odoo
-        restart: always
+        restart: unless-stopped
         build:
             context: .
             dockerfile: ./Dockerfile
@@ -25,7 +25,7 @@ services:
 
     database:
         image: postgres
-        restart: always
+        restart: unless-stopped
         build:
             context: .
             dockerfile: ./Dockerfile-psql
@@ -39,7 +39,7 @@ services:
 
     proxy:
         image: nginx
-        restart: always
+        restart: unless-stopped
         ports:
             - 80:80
         volumes:
