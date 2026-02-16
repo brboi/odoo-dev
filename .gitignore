@@ -20,3 +20,7 @@ tsconfig.json
 
 # Container env override
 .devcontainer/override.env
+
+# .personal
+.personal/*
+!.personal/.gitkeep
