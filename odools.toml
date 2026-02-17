@@ -6,6 +6,10 @@ addons_paths = [
     "${workspaceFolder}/src/community/odoo/addons",
     "${workspaceFolder}/src/enterprise",
     "${workspaceFolder}/src/extra-addons/design-themes",
-    "${workspaceFolder}/src/extra-addons/runbot"
+    "${workspaceFolder}/src/extra-addons/iap-apps",
+    "${workspaceFolder}/src/extra-addons/industry",
+    "${workspaceFolder}/src/extra-addons/personal",
+    "${workspaceFolder}/src/extra-addons/runbot",
+    "${workspaceFolder}/src/extra-addons/tutorials"
 ]
 python_path = "python3"
