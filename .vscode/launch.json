@@ -179,6 +179,14 @@
                     "value": "--"
                 },
                 {
+                    "label": "Init: own test module",
+                    "value": "-ipersonal_test"
+                },
+                {
+                    "label": "Update: own test module",
+                    "value": "-upersonal_test"
+                },
+                {
                     "label": "Without demo data",
                     "value": "--without-demo=all"
                 },

@@ -25,3 +25,6 @@ yes "" | src/community/addons/web/tooling/enable.sh
 
 # Setting up pre-commit hooks
 .devcontainer/odoo/bin/setup-pre-commit
+
+# Install Claude Code
+curl -fsSL https://claude.ai/install.sh | bash
